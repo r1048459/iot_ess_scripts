@@ -16,9 +16,9 @@ BH1750_ADDR = 0x23                # BH1750 I2C-adres
 # ThingSpeak MQTT-instellingen
 MQTT_BROKER = "mqtt3.thingspeak.com"
 MQTT_PORT = 1883
+MQTT_CLIENT_ID = "EAEWESgCDS8kPTAYFjkLERk"
 MQTT_USERNAME = "EAEWESgCDS8kPTAYFjkLERk"
 MQTT_PASSWORD = "0c/35VFsF8CJUw3nqMlaSCPv"
-MQTT_CLIENT_ID = "EAEWESgCDS8kPTAYFjkLERk"
 MQTT_TOPIC = "channels/2884475/publish"
 
 # Initialisatie van WiringPi
@@ -80,7 +80,7 @@ def send_to_thingspeak(temp, lux, press):
         print(f"ThingSpeak MQTT Error: {e}")
 
 # MQTT-client initialiseren
-client = mqtt.Client(client_id=MQTT_CLIENT_ID)
+client = mqtt.Client(client_id=MQTT_CLIENT_ID, callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
 client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
 
